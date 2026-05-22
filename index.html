@@ -7,7 +7,7 @@
 
 <meta
 name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+content="width=device-width, initial-scale=1.0"
 >
 
 <title>Tellus Leitura</title>
@@ -29,312 +29,95 @@ src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
 
 *{
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+body{
   margin:0;
-  padding:0;
-  overflow-x:hidden;
-  width:100%;
   font-family:Arial,sans-serif;
   background:#eef2f7;
 }
 
-
-/* ===================================== */
-/* LOGIN */
-/* ===================================== */
-
-#loginTela{
-
-  position:fixed;
-  inset:0;
-  background:#eef2f7;
-  z-index:999999;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  padding:20px;
-
-}
-
-.loginBox{
-
-  width:100%;
-  max-width:400px;
-
-  background:white;
-
-  padding:30px;
-
-  border-radius:24px;
-
-  box-shadow:
-  0 10px 40px rgba(0,0,0,0.15);
-
-}
-
-.loginLogo{
-
-  text-align:center;
-  font-size:30px;
-  font-weight:bold;
-  color:#0b1f3a;
-
-}
-
-.loginSub{
-
-  text-align:center;
-  color:#666;
-  margin-top:8px;
-  margin-bottom:25px;
-
-}
-
-.loginInput{
-
-  width:100%;
-  padding:16px;
-
-  border:none;
-
-  border-radius:14px;
-
-  background:#f1f4f8;
-
-  margin-bottom:14px;
-
-  font-size:16px;
-
-}
-
-.loginBotao{
-
-  width:100%;
-
-  border:none;
-
-  background:#1976d2;
-
-  color:white;
-
-  padding:16px;
-
-  border-radius:14px;
-
-  font-size:18px;
-
-  font-weight:bold;
-
-}
-
-#erroLogin{
-
-  margin-top:15px;
-  text-align:center;
-  color:red;
-
-}
-
-
-/* ===================================== */
-/* APP */
-/* ===================================== */
-
 .topo{
-
   background:#0b1f3a;
-
   color:white;
-
-  padding:18px;
-
+  padding:20px;
   text-align:center;
-
-  position:sticky;
-
-  top:0;
-
-  z-index:999;
-
 }
 
 .logo{
-
-  font-size:26px;
+  font-size:28px;
   font-weight:bold;
-
 }
 
 .sub{
-
   margin-top:5px;
-  opacity:0.9;
-
-}
-
-.logout{
-
-  margin-top:12px;
-
-  border:none;
-
-  background:#d32f2f;
-
-  color:white;
-
-  padding:10px 18px;
-
-  border-radius:12px;
-
-  font-weight:bold;
-
-}
-
-.abas{
-
-  display:flex;
-
-  width:100%;
-
-}
-
-.aba{
-
-  flex:1;
-
-  border:none;
-
-  padding:15px;
-
-  font-size:16px;
-
-  font-weight:bold;
-
-}
-
-.ativa{
-
-  background:#1976d2;
-  color:white;
-
 }
 
 .container{
-
-  padding:14px;
-
-  width:100%;
-
-  overflow-x:hidden;
-
-}
-
-select,
-input{
-
-  width:100%;
-
-  max-width:100%;
-
-  padding:14px;
-
-  margin-bottom:12px;
-
-  border:none;
-
-  border-radius:14px;
-
-  font-size:16px;
-
-  box-shadow:
-  0 2px 8px rgba(0,0,0,0.1);
-
+  padding:15px;
 }
 
 .card{
-
   background:white;
-
   padding:16px;
-
   border-radius:16px;
-
   margin-bottom:16px;
-
-  box-shadow:
-  0 2px 10px rgba(0,0,0,0.1);
-
+  box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
-.titulo{
-
-  font-weight:bold;
-
-  color:#0b1f3a;
-
-  margin-top:10px;
-
-}
-
-.valor{
-
-  margin-bottom:10px;
-
-  word-break:break-word;
-
+input,select{
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  border:none;
+  border-radius:14px;
+  font-size:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
 
 .botao{
-
   display:block;
-
   background:#1976d2;
-
   color:white;
-
   text-decoration:none;
-
   text-align:center;
-
   padding:14px;
-
   border-radius:12px;
-
   margin-top:12px;
-
   font-weight:bold;
-
+  border:none;
+  width:100%;
 }
 
 .oculto{
-
   display:none;
+}
 
+.abas{
+  display:flex;
+}
+
+.aba{
+  flex:1;
+  border:none;
+  padding:15px;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.ativa{
+  background:#1976d2;
+  color:white;
 }
 
 #map{
-
   width:100%;
-
   height:75vh;
-
   border-radius:18px;
-
 }
 
-.info{
-
-  text-align:center;
-
-  color:#555;
-
-  margin-bottom:12px;
-
+.logout{
+  background:#c62828;
 }
 
 </style>
@@ -343,54 +126,55 @@ input{
 
 <body>
 
-
-<!-- ===================================== -->
-<!-- LOGIN -->
-<!-- ===================================== -->
-
 <div id="loginTela">
 
-<div class="loginBox">
+<div class="topo">
 
-<div class="loginLogo">
+<div class="logo">
 TELLUS LEITURA
 </div>
 
-<div class="loginSub">
-Acesso Operacional
+<div class="sub">
+Login Operacional
 </div>
 
+</div>
+
+<div class="container">
+
+<div class="card">
+
 <input
-class="loginInput"
-id="emailLogin"
 type="email"
+id="email"
 placeholder="Email"
 >
 
 <input
-class="loginInput"
-id="senhaLogin"
 type="password"
+id="senha"
 placeholder="Senha"
 >
 
 <button
-class="loginBotao"
-id="btnLogin"
+class="botao"
+onclick="fazerLogin()"
 >
+
 ENTRAR
+
 </button>
 
-<div id="erroLogin"></div>
-
 </div>
 
 </div>
 
+</div>
 
-<!-- ===================================== -->
-<!-- APP -->
-<!-- ===================================== -->
+<div
+id="appTela"
+class="oculto"
+>
 
 <div class="topo">
 
@@ -402,15 +186,7 @@ TELLUS LEITURA
 Pesquisa Operacional
 </div>
 
-<button
-class="logout"
-onclick="logout()"
->
-SAIR
-</button>
-
 </div>
-
 
 <div class="abas">
 
@@ -431,11 +207,6 @@ MAPA
 </button>
 
 </div>
-
-
-<!-- ===================================== -->
-<!-- ABA BUSCA -->
-<!-- ===================================== -->
 
 <div
 id="abaBusca"
@@ -458,16 +229,9 @@ id="busca"
 placeholder="Buscar instalação, medidor, rua ou cliente"
 >
 
-<div class="info" id="infoBusca"></div>
-
 <div id="resultados"></div>
 
 </div>
-
-
-<!-- ===================================== -->
-<!-- ABA MAPA -->
-<!-- ===================================== -->
 
 <div
 id="abaMapa"
@@ -488,25 +252,46 @@ placeholder="Digite ou selecione a MRU"
 class="botao"
 onclick="carregarMapa()"
 >
+
 EXIBIR MAPA
+
 </button>
 
 <div id="map"></div>
 
 </div>
 
+<div class="container">
 
-<!-- ===================================== -->
-<!-- FIREBASE -->
-<!-- ===================================== -->
+<button
+class="botao logout"
+onclick="logout()"
+>
+
+SAIR
+
+</button>
+
+</div>
+
+</div>
 
 <script type="module">
 
 import { initializeApp }
 
-from
+from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
 
-'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import {
+
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+
+}
+
+from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 
 import {
 
@@ -516,84 +301,147 @@ import {
 
 }
 
-from
-
-'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-
-
-// =====================================
-// FIREBASE CONFIG
-// =====================================
+from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
 const firebaseConfig = {
 
   apiKey: "AIzaSyDlacPos-Jm7mi5pCWLMaXIZsnQUBXNsBc",
 
-  authDomain: "tellusleitura-f115b.firebaseapp.com",
+  authDomain:
+  "tellusleitura-f115b.firebaseapp.com",
 
-  projectId: "tellusleitura-f115b",
+  projectId:
+  "tellusleitura-f115b",
 
-  storageBucket: "tellusleitura-f115b.firebasestorage.app",
+  storageBucket:
+  "tellusleitura-f115b.firebasestorage.app",
 
-  messagingSenderId: "1088197735339",
+  messagingSenderId:
+  "1088197735339",
 
-  appId: "1:1088197735339:web:6d370186d58f71200fd8ee"
+  appId:
+  "1:1088197735339:web:6d370186d58f71200fd8ee"
 
 };
 
-const app = initializeApp(firebaseConfig);
+const app =
+  initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+const auth =
+  getAuth(app);
 
+const db =
+  getFirestore(app);
 
-// =====================================
-// ÁREAS
-// =====================================
+window.fazerLogin =
+async function(){
+
+  let email =
+    document.getElementById('email').value;
+
+  let senha =
+    document.getElementById('senha').value;
+
+  try{
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      senha
+    );
+
+  }catch(e){
+
+    alert('Login inválido');
+
+  }
+
+}
+
+window.logout =
+async function(){
+
+  await signOut(auth);
+
+}
+
+let permissoes = [];
+
+let banco = [];
+let indexes = {};
+let map = null;
 
 const AREAS = {
-
   "171":"ITABUNA",
   "172":"IBICARAI",
   "173":"ILHÉUS",
   "174":"COARACI",
   "175":"CANAVIEIRAS",
   "176":"CAMACAN"
-
 };
 
+onAuthStateChanged(auth,
+async user => {
 
-// =====================================
-// VARIÁVEIS
-// =====================================
+  if(!user){
 
-let banco = [];
+    document
+      .getElementById('loginTela')
+      .classList.remove('oculto');
 
-let indexes = {};
+    document
+      .getElementById('appTela')
+      .classList.add('oculto');
 
-let map = null;
+    return;
 
-let usuarioAtual = null;
+  }
 
+  let ref =
+    doc(db,'usuarios',user.email);
 
-// =====================================
-// REMOVER .0
-// =====================================
+  let snap =
+    await getDoc(ref);
 
-function limpar(v){
+  if(!snap.exists()){
 
-  if(v == null) return '';
+    alert('Sem permissão');
 
-  return String(v)
-    .replace(/\.0$/,'');
+    logout();
 
-}
+    return;
 
+  }
 
-// =====================================
-// CARREGAR INDEXES
-// =====================================
+  let dados =
+    snap.data();
 
-async function carregarIndexes(){
+  if(!dados.ativo){
+
+    alert('Usuário desativado');
+
+    logout();
+
+    return;
+
+  }
+
+  permissoes =
+    dados.areas;
+
+  document
+    .getElementById('loginTela')
+    .classList.add('oculto');
+
+  document
+    .getElementById('appTela')
+    .classList.remove('oculto');
+
+  carregarSistema();
+
+});
+
+async function carregarSistema(){
 
   let response =
     await fetch('indexes.json');
@@ -601,215 +449,37 @@ async function carregarIndexes(){
   indexes =
     await response.json();
 
-}
-
-await carregarIndexes();
-
-
-// =====================================
-// LOGIN
-// =====================================
-
-async function fazerLogin(){
-
-  const email = document
-    .getElementById('emailLogin')
-    .value
-    .trim();
-
-  const senha = document
-    .getElementById('senhaLogin')
-    .value
-    .trim();
-
-  const erro =
-    document.getElementById('erroLogin');
-
-  erro.innerHTML = '';
-
-  try{
-
-    const ref =
-      doc(db,'usuarios','admin');
-
-    const snap =
-      await getDoc(ref);
-
-    if(!snap.exists()){
-
-      erro.innerHTML =
-        'Usuário não encontrado';
-
-      return;
-
-    }
-
-    const dados =
-      snap.data();
-
-    if(
-      dados.Email !== email
-    ){
-
-      erro.innerHTML =
-        'Email inválido';
-
-      return;
-
-    }
-
-    if(
-      dados.Senha !== senha
-    ){
-
-      erro.innerHTML =
-        'Senha inválida';
-
-      return;
-
-    }
-
-    if(
-      !dados.Ativo
-    ){
-
-      erro.innerHTML =
-        'Usuário desativado';
-
-      return;
-
-    }
-
-    usuarioAtual = dados;
-
-    localStorage.setItem(
-      'usuarioTellus',
-      JSON.stringify(dados)
-    );
-
-    liberarSistema();
-
-  }
-
-  catch(e){
-
-    console.log(e);
-
-    erro.innerHTML =
-      'Erro de conexão';
-
-  }
-
-}
-
-
-// =====================================
-// LIBERAR SISTEMA
-// =====================================
-
-function liberarSistema(){
-
-  document
-    .getElementById('loginTela')
-    .style.display = 'none';
-
   popularAreas();
 
 }
 
-
-// =====================================
-// LOGIN OFFLINE
-// =====================================
-
-let usuarioSalvo =
-  localStorage.getItem(
-    'usuarioTellus'
-  );
-
-if(usuarioSalvo){
-
-  usuarioAtual =
-    JSON.parse(usuarioSalvo);
-
-  liberarSistema();
-
-}
-
-
-// =====================================
-// BOTÃO LOGIN
-// =====================================
-
-document
-.getElementById('btnLogin')
-.addEventListener(
-  'click',
-  fazerLogin
-);
-
-
-// =====================================
-// LOGOUT
-// =====================================
-
-window.logout = function(){
-
-  localStorage.removeItem(
-    'usuarioTellus'
-  );
-
-  location.reload();
-
-};
-
-
-// =====================================
-// POPULAR ÁREAS
-// =====================================
-
 function popularAreas(){
-
-  let areasPermitidas =
-    usuarioAtual['Áreas'];
 
   let html =
     '<option value="">Selecionar Área</option>';
 
-  for(let codigo in AREAS){
-
-    if(
-      !areasPermitidas.includes(
-        parseInt(codigo)
-      )
-    ) continue;
+  permissoes.forEach(area => {
 
     html += `
 
-<option value="${codigo}">
-${codigo} - ${AREAS[codigo]}
+<option value="${area}">
+${area} - ${AREAS[area]}
 </option>
 
 `;
 
-  }
+  });
 
-  document
-    .getElementById('area')
+  document.getElementById('area')
     .innerHTML = html;
 
-  document
-    .getElementById('areaMapa')
+  document.getElementById('areaMapa')
     .innerHTML = html;
 
 }
 
-
-// =====================================
-// ABAS
-// =====================================
-
-window.abrirAba = function(tipo){
+window.abrirAba =
+function(tipo){
 
   document
     .getElementById('abaBusca')
@@ -837,9 +507,7 @@ window.abrirAba = function(tipo){
       .getElementById('btnBusca')
       .classList.add('ativa');
 
-  }
-
-  else{
+  }else{
 
     document
       .getElementById('abaMapa')
@@ -849,29 +517,14 @@ window.abrirAba = function(tipo){
       .getElementById('btnMapa')
       .classList.add('ativa');
 
-    setTimeout(() => {
-
-      if(map){
-        map.invalidateSize();
-      }
-
-    },300);
-
   }
 
-};
-
-
-// =====================================
-// CARREGAR ÁREA
-// =====================================
+}
 
 document
 .getElementById('area')
-.addEventListener(
-  'change',
-  carregarArea
-);
+.addEventListener('change',
+carregarArea);
 
 async function carregarArea(){
 
@@ -899,7 +552,7 @@ async function carregarArea(){
   let mrus = [
 
     ...new Set(
-      banco.map(i => limpar(i[0]))
+      banco.map(i => i[0])
     )
 
   ];
@@ -907,9 +560,7 @@ async function carregarArea(){
   mrus.sort();
 
   let lista =
-    document.getElementById(
-      'listaMRUs'
-    );
+    document.getElementById('listaMRUs');
 
   lista.innerHTML = '';
 
@@ -920,33 +571,17 @@ async function carregarArea(){
 
   });
 
-  document
-    .getElementById('infoBusca')
-    .innerHTML =
-
-    banco.length +
-    ' instalações carregadas';
-
 }
-
-
-// =====================================
-// PESQUISA
-// =====================================
 
 document
 .getElementById('mru')
-.addEventListener(
-  'input',
-  pesquisar
-);
+.addEventListener('input',
+pesquisar);
 
 document
 .getElementById('busca')
-.addEventListener(
-  'input',
-  pesquisar
-);
+.addEventListener('input',
+pesquisar);
 
 function pesquisar(){
 
@@ -962,29 +597,30 @@ function pesquisar(){
     .value
     .toLowerCase();
 
-  let resultados = banco.filter(item => {
+  let resultados =
+    banco.filter(item => {
 
-    let okMru =
+      let okMru =
+        !mru ||
+        item[0]
+        .toLowerCase()
+        .includes(mru);
 
-      !mru ||
+      let pesquisa = (
 
-      limpar(item[0])
-      .toLowerCase()
-      .includes(mru);
+        item[1] + ' ' +
+        item[2] + ' ' +
+        item[3] + ' ' +
+        item[7]
 
-    let pesquisa = (
+      ).toLowerCase();
 
-      limpar(item[1]) + ' ' +
-      limpar(item[2]) + ' ' +
-      limpar(item[3]) + ' ' +
-      limpar(item[7])
+      let okTexto =
+        pesquisa.includes(texto);
 
-    ).toLowerCase();
+      return okMru && okTexto;
 
-    return okMru &&
-      pesquisa.includes(texto);
-
-  }).slice(0,50);
+    }).slice(0,50);
 
   let html = '';
 
@@ -994,61 +630,26 @@ function pesquisar(){
 
 <div class="card">
 
-<div class="titulo">
-⚡ Instalação
-</div>
+<b>⚡ Instalação</b><br>
+${item[1]}<br><br>
 
-<div class="valor">
-${limpar(item[1])}
-</div>
+<b>🔢 Medidor</b><br>
+${item[2]}<br><br>
 
-<div class="titulo">
-🔢 Medidor
-</div>
+<b>📍 Rua</b><br>
+${item[3]}<br><br>
 
-<div class="valor">
-${limpar(item[2])}
-</div>
+<b>🏠 Número</b><br>
+${item[4]}<br><br>
 
-<div class="titulo">
-📍 Rua
-</div>
+<b>🗺 Bairro</b><br>
+${item[5]}<br><br>
 
-<div class="valor">
-${limpar(item[3])}
-</div>
+<b>🏙 Cidade</b><br>
+${item[6]}<br><br>
 
-<div class="titulo">
-🏠 Número
-</div>
-
-<div class="valor">
-${limpar(item[4])}
-</div>
-
-<div class="titulo">
-🗺 Bairro
-</div>
-
-<div class="valor">
-${limpar(item[5])}
-</div>
-
-<div class="titulo">
-🏙 Cidade
-</div>
-
-<div class="valor">
-${limpar(item[6])}
-</div>
-
-<div class="titulo">
-👤 Cliente
-</div>
-
-<div class="valor">
-${limpar(item[7])}
-</div>
+<b>👤 Cliente</b><br>
+${item[7]}
 
 <a
 class="botao"
@@ -1072,24 +673,17 @@ target="_blank"
 
 }
 
-
-// =====================================
-// MAPA
-// =====================================
-
 document
 .getElementById('areaMapa')
 .addEventListener(
-  'change',
-  carregarAreaMapa
+'change',
+carregarAreaMapa
 );
 
 async function carregarAreaMapa(){
 
   let area =
-    document.getElementById(
-      'areaMapa'
-    ).value;
+    document.getElementById('areaMapa').value;
 
   banco = [];
 
@@ -1112,7 +706,7 @@ async function carregarAreaMapa(){
   let mrus = [
 
     ...new Set(
-      banco.map(i => limpar(i[0]))
+      banco.map(i => i[0])
     )
 
   ];
@@ -1120,9 +714,8 @@ async function carregarAreaMapa(){
   mrus.sort();
 
   let lista =
-    document.getElementById(
-      'listaMRUsMapa'
-    );
+    document
+    .getElementById('listaMRUsMapa');
 
   lista.innerHTML = '';
 
@@ -1135,25 +728,20 @@ async function carregarAreaMapa(){
 
 }
 
-
-window.carregarMapa = function(){
+window.carregarMapa =
+function(){
 
   let mru =
-    document.getElementById(
-      'mruMapa'
-    ).value;
+    document
+    .getElementById('mruMapa')
+    .value;
 
   let dados =
-    banco.filter(
-      i => limpar(i[0]) == mru
-    );
+    banco.filter(i => i[0] == mru);
 
   if(dados.length == 0){
 
-    alert(
-      'Nenhuma instalação encontrada'
-    );
-
+    alert('Nenhuma instalação encontrada');
     return;
 
   }
@@ -1164,16 +752,17 @@ window.carregarMapa = function(){
 
   }
 
-  map = L.map('map').setView(
+  map = L.map('map')
+    .setView(
 
-    [
-      parseFloat(dados[0][8]),
-      parseFloat(dados[0][9])
-    ],
+      [
+        parseFloat(dados[0][8]),
+        parseFloat(dados[0][9])
+      ],
 
-    15
+      15
 
-  );
+    );
 
   L.tileLayer(
 
@@ -1192,25 +781,26 @@ window.carregarMapa = function(){
       item[9] == 'nan'
     ) return;
 
-    let marker = L.marker([
+    let marker =
+      L.marker([
 
-      parseFloat(item[8]),
-      parseFloat(item[9])
+        parseFloat(item[8]),
+        parseFloat(item[9])
 
-    ]).addTo(map);
+      ]).addTo(map);
 
     marker.bindPopup(`
 
 <b>⚡ Instalação:</b><br>
-${limpar(item[1])}
+${item[1]}
 <br><br>
 
 <b>👤 Cliente:</b><br>
-${limpar(item[7])}
+${item[7]}
 <br><br>
 
 <b>📍 Rua:</b><br>
-${limpar(item[3])}, ${limpar(item[4])}
+${item[3]}, ${item[4]}
 <br><br>
 
 <a
@@ -1226,14 +816,9 @@ target="_blank"
 
   });
 
-};
+}
 
-
-// =====================================
-// SERVICE WORKER
-// =====================================
-
-if('serviceWorker' in navigator){
+if ('serviceWorker' in navigator) {
 
   window.addEventListener('load', () => {
 
