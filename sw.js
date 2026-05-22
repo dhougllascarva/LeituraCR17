@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tellus-v12001';
+const CACHE_NAME = 'tellus-v12002';
 
 const urlsToCache = [
 
