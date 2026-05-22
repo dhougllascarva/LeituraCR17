@@ -485,6 +485,37 @@ ${area} - ${AREAS[area]}
   document.getElementById('areaMapa')
     .innerHTML = html;
 
+
+  // =====================================
+  // AUTOSELECIONAR ÁREA ÚNICA
+  // =====================================
+
+  if(permissoes.length == 1){
+
+    let unicaArea = permissoes[0];
+
+    // Selecionar automaticamente
+    document.getElementById('area')
+      .value = unicaArea;
+
+    document.getElementById('areaMapa')
+      .value = unicaArea;
+
+    // Ocultar selects
+    document.getElementById('area')
+      .style.display = 'none';
+
+    document.getElementById('areaMapa')
+      .style.display = 'none';
+
+    // Carregar automaticamente
+    carregarArea();
+    carregarAreaMapa();
+
+  }
+
+}
+
 }
 
 window.abrirAba =
