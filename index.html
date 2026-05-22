@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -8,7 +7,7 @@
 
 <meta
 name="viewport"
-content="width=device-width, initial-scale=1.0"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 >
 
 <title>Tellus Leitura</title>
@@ -30,99 +29,312 @@ src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
 
 *{
   box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
-body{
+html,body{
   margin:0;
+  padding:0;
+  overflow-x:hidden;
+  width:100%;
   font-family:Arial,sans-serif;
   background:#eef2f7;
 }
 
-.topo{
-  background:#0b1f3a;
-  color:white;
+
+/* ===================================== */
+/* LOGIN */
+/* ===================================== */
+
+#loginTela{
+
+  position:fixed;
+  inset:0;
+  background:#eef2f7;
+  z-index:999999;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
   padding:20px;
+
+}
+
+.loginBox{
+
+  width:100%;
+  max-width:400px;
+
+  background:white;
+
+  padding:30px;
+
+  border-radius:24px;
+
+  box-shadow:
+  0 10px 40px rgba(0,0,0,0.15);
+
+}
+
+.loginLogo{
+
   text-align:center;
+  font-size:30px;
+  font-weight:bold;
+  color:#0b1f3a;
+
+}
+
+.loginSub{
+
+  text-align:center;
+  color:#666;
+  margin-top:8px;
+  margin-bottom:25px;
+
+}
+
+.loginInput{
+
+  width:100%;
+  padding:16px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:#f1f4f8;
+
+  margin-bottom:14px;
+
+  font-size:16px;
+
+}
+
+.loginBotao{
+
+  width:100%;
+
+  border:none;
+
+  background:#1976d2;
+
+  color:white;
+
+  padding:16px;
+
+  border-radius:14px;
+
+  font-size:18px;
+
+  font-weight:bold;
+
+}
+
+#erroLogin{
+
+  margin-top:15px;
+  text-align:center;
+  color:red;
+
+}
+
+
+/* ===================================== */
+/* APP */
+/* ===================================== */
+
+.topo{
+
+  background:#0b1f3a;
+
+  color:white;
+
+  padding:18px;
+
+  text-align:center;
+
+  position:sticky;
+
+  top:0;
+
+  z-index:999;
+
 }
 
 .logo{
-  font-size:28px;
+
+  font-size:26px;
   font-weight:bold;
+
 }
 
 .sub{
+
   margin-top:5px;
+  opacity:0.9;
+
+}
+
+.logout{
+
+  margin-top:12px;
+
+  border:none;
+
+  background:#d32f2f;
+
+  color:white;
+
+  padding:10px 18px;
+
+  border-radius:12px;
+
+  font-weight:bold;
+
 }
 
 .abas{
+
   display:flex;
+
+  width:100%;
+
 }
 
 .aba{
+
   flex:1;
+
   border:none;
+
   padding:15px;
+
   font-size:16px;
+
   font-weight:bold;
+
 }
 
 .ativa{
+
   background:#1976d2;
   color:white;
+
 }
 
 .container{
-  padding:15px;
+
+  padding:14px;
+
+  width:100%;
+
+  overflow-x:hidden;
+
 }
 
-select,input{
+select,
+input{
+
   width:100%;
+
+  max-width:100%;
+
   padding:14px;
+
   margin-bottom:12px;
+
   border:none;
+
   border-radius:14px;
+
   font-size:16px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+
+  box-shadow:
+  0 2px 8px rgba(0,0,0,0.1);
+
 }
 
 .card{
+
   background:white;
+
   padding:16px;
+
   border-radius:16px;
+
   margin-bottom:16px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.1);
+
+  box-shadow:
+  0 2px 10px rgba(0,0,0,0.1);
+
 }
 
 .titulo{
+
   font-weight:bold;
+
   color:#0b1f3a;
+
   margin-top:10px;
+
 }
 
 .valor{
+
   margin-bottom:10px;
+
+  word-break:break-word;
+
 }
 
 .botao{
+
   display:block;
+
   background:#1976d2;
+
   color:white;
+
   text-decoration:none;
+
   text-align:center;
+
   padding:14px;
+
   border-radius:12px;
+
   margin-top:12px;
+
   font-weight:bold;
+
 }
 
 .oculto{
+
   display:none;
+
 }
 
 #map{
+
   width:100%;
+
   height:75vh;
+
   border-radius:18px;
+
+}
+
+.info{
+
+  text-align:center;
+
+  color:#555;
+
+  margin-bottom:12px;
+
 }
 
 </style>
@@ -130,6 +342,55 @@ select,input{
 </head>
 
 <body>
+
+
+<!-- ===================================== -->
+<!-- LOGIN -->
+<!-- ===================================== -->
+
+<div id="loginTela">
+
+<div class="loginBox">
+
+<div class="loginLogo">
+TELLUS LEITURA
+</div>
+
+<div class="loginSub">
+Acesso Operacional
+</div>
+
+<input
+class="loginInput"
+id="emailLogin"
+type="email"
+placeholder="Email"
+>
+
+<input
+class="loginInput"
+id="senhaLogin"
+type="password"
+placeholder="Senha"
+>
+
+<button
+class="loginBotao"
+id="btnLogin"
+>
+ENTRAR
+</button>
+
+<div id="erroLogin"></div>
+
+</div>
+
+</div>
+
+
+<!-- ===================================== -->
+<!-- APP -->
+<!-- ===================================== -->
 
 <div class="topo">
 
@@ -141,7 +402,15 @@ TELLUS LEITURA
 Pesquisa Operacional
 </div>
 
+<button
+class="logout"
+onclick="logout()"
+>
+SAIR
+</button>
+
 </div>
+
 
 <div class="abas">
 
@@ -162,6 +431,11 @@ MAPA
 </button>
 
 </div>
+
+
+<!-- ===================================== -->
+<!-- ABA BUSCA -->
+<!-- ===================================== -->
 
 <div
 id="abaBusca"
@@ -184,9 +458,16 @@ id="busca"
 placeholder="Buscar instalação, medidor, rua ou cliente"
 >
 
+<div class="info" id="infoBusca"></div>
+
 <div id="resultados"></div>
 
 </div>
+
+
+<!-- ===================================== -->
+<!-- ABA MAPA -->
+<!-- ===================================== -->
 
 <div
 id="abaMapa"
@@ -214,55 +495,321 @@ EXIBIR MAPA
 
 </div>
 
-<script>
+
+<!-- ===================================== -->
+<!-- FIREBASE -->
+<!-- ===================================== -->
+
+<script type="module">
+
+import { initializeApp }
+
+from
+
+'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+
+import {
+
+  getFirestore,
+  doc,
+  getDoc
+
+}
+
+from
+
+'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+
+// =====================================
+// FIREBASE CONFIG
+// =====================================
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyDlacPos-Jm7mi5pCWLMaXIZsnQUBXNsBc",
+
+  authDomain: "tellusleitura-f115b.firebaseapp.com",
+
+  projectId: "tellusleitura-f115b",
+
+  storageBucket: "tellusleitura-f115b.firebasestorage.app",
+
+  messagingSenderId: "1088197735339",
+
+  appId: "1:1088197735339:web:6d370186d58f71200fd8ee"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+// =====================================
+// ÁREAS
+// =====================================
 
 const AREAS = {
+
   "171":"ITABUNA",
   "172":"IBICARAI",
   "173":"ILHÉUS",
   "174":"COARACI",
   "175":"CANAVIEIRAS",
   "176":"CAMACAN"
+
 };
 
+
+// =====================================
+// VARIÁVEIS
+// =====================================
+
 let banco = [];
+
 let indexes = {};
+
 let map = null;
+
+let usuarioAtual = null;
+
+
+// =====================================
+// REMOVER .0
+// =====================================
+
+function limpar(v){
+
+  if(v == null) return '';
+
+  return String(v)
+    .replace(/\.0$/,'');
+
+}
+
+
+// =====================================
+// CARREGAR INDEXES
+// =====================================
 
 async function carregarIndexes(){
 
   let response =
     await fetch('indexes.json');
 
-  indexes = await response.json();
+  indexes =
+    await response.json();
 
 }
 
-carregarIndexes();
+await carregarIndexes();
+
+
+// =====================================
+// LOGIN
+// =====================================
+
+async function fazerLogin(){
+
+  const email = document
+    .getElementById('emailLogin')
+    .value
+    .trim();
+
+  const senha = document
+    .getElementById('senhaLogin')
+    .value
+    .trim();
+
+  const erro =
+    document.getElementById('erroLogin');
+
+  erro.innerHTML = '';
+
+  try{
+
+    const ref =
+      doc(db,'usuarios','admin');
+
+    const snap =
+      await getDoc(ref);
+
+    if(!snap.exists()){
+
+      erro.innerHTML =
+        'Usuário não encontrado';
+
+      return;
+
+    }
+
+    const dados =
+      snap.data();
+
+    if(
+      dados.Email !== email
+    ){
+
+      erro.innerHTML =
+        'Email inválido';
+
+      return;
+
+    }
+
+    if(
+      dados.Senha !== senha
+    ){
+
+      erro.innerHTML =
+        'Senha inválida';
+
+      return;
+
+    }
+
+    if(
+      !dados.Ativo
+    ){
+
+      erro.innerHTML =
+        'Usuário desativado';
+
+      return;
+
+    }
+
+    usuarioAtual = dados;
+
+    localStorage.setItem(
+      'usuarioTellus',
+      JSON.stringify(dados)
+    );
+
+    liberarSistema();
+
+  }
+
+  catch(e){
+
+    console.log(e);
+
+    erro.innerHTML =
+      'Erro de conexão';
+
+  }
+
+}
+
+
+// =====================================
+// LIBERAR SISTEMA
+// =====================================
+
+function liberarSistema(){
+
+  document
+    .getElementById('loginTela')
+    .style.display = 'none';
+
+  popularAreas();
+
+}
+
+
+// =====================================
+// LOGIN OFFLINE
+// =====================================
+
+let usuarioSalvo =
+  localStorage.getItem(
+    'usuarioTellus'
+  );
+
+if(usuarioSalvo){
+
+  usuarioAtual =
+    JSON.parse(usuarioSalvo);
+
+  liberarSistema();
+
+}
+
+
+// =====================================
+// BOTÃO LOGIN
+// =====================================
+
+document
+.getElementById('btnLogin')
+.addEventListener(
+  'click',
+  fazerLogin
+);
+
+
+// =====================================
+// LOGOUT
+// =====================================
+
+window.logout = function(){
+
+  localStorage.removeItem(
+    'usuarioTellus'
+  );
+
+  location.reload();
+
+};
+
+
+// =====================================
+// POPULAR ÁREAS
+// =====================================
 
 function popularAreas(){
+
+  let areasPermitidas =
+    usuarioAtual['Áreas'];
 
   let html =
     '<option value="">Selecionar Área</option>';
 
   for(let codigo in AREAS){
 
+    if(
+      !areasPermitidas.includes(
+        parseInt(codigo)
+      )
+    ) continue;
+
     html += `
-      <option value="${codigo}">
-      ${codigo} - ${AREAS[codigo]}
-      </option>
-    `;
+
+<option value="${codigo}">
+${codigo} - ${AREAS[codigo]}
+</option>
+
+`;
 
   }
 
-  document.getElementById('area').innerHTML = html;
-  document.getElementById('areaMapa').innerHTML = html;
+  document
+    .getElementById('area')
+    .innerHTML = html;
+
+  document
+    .getElementById('areaMapa')
+    .innerHTML = html;
 
 }
 
-popularAreas();
 
-function abrirAba(tipo){
+// =====================================
+// ABAS
+// =====================================
+
+window.abrirAba = function(tipo){
 
   document
     .getElementById('abaBusca')
@@ -290,7 +837,9 @@ function abrirAba(tipo){
       .getElementById('btnBusca')
       .classList.add('ativa');
 
-  }else{
+  }
+
+  else{
 
     document
       .getElementById('abaMapa')
@@ -306,15 +855,23 @@ function abrirAba(tipo){
         map.invalidateSize();
       }
 
-    }, 300);
+    },300);
 
   }
 
-}
+};
+
+
+// =====================================
+// CARREGAR ÁREA
+// =====================================
 
 document
 .getElementById('area')
-.addEventListener('change', carregarArea);
+.addEventListener(
+  'change',
+  carregarArea
+);
 
 async function carregarArea(){
 
@@ -340,15 +897,19 @@ async function carregarArea(){
   }
 
   let mrus = [
+
     ...new Set(
-      banco.map(i => i[0])
+      banco.map(i => limpar(i[0]))
     )
+
   ];
 
   mrus.sort();
 
   let lista =
-    document.getElementById('listaMRUs');
+    document.getElementById(
+      'listaMRUs'
+    );
 
   lista.innerHTML = '';
 
@@ -359,46 +920,69 @@ async function carregarArea(){
 
   });
 
+  document
+    .getElementById('infoBusca')
+    .innerHTML =
+
+    banco.length +
+    ' instalações carregadas';
+
 }
+
+
+// =====================================
+// PESQUISA
+// =====================================
 
 document
 .getElementById('mru')
-.addEventListener('input', pesquisar);
+.addEventListener(
+  'input',
+  pesquisar
+);
 
 document
 .getElementById('busca')
-.addEventListener('input', pesquisar);
+.addEventListener(
+  'input',
+  pesquisar
+);
 
 function pesquisar(){
 
   let mru =
-    document.getElementById('mru')
+    document
+    .getElementById('mru')
     .value
     .toLowerCase();
 
   let texto =
-    document.getElementById('busca')
+    document
+    .getElementById('busca')
     .value
     .toLowerCase();
 
   let resultados = banco.filter(item => {
 
     let okMru =
+
       !mru ||
-      item[0].toLowerCase().includes(mru);
 
-    let pesquisa =
-      (
-        item[1] + ' ' +
-        item[2] + ' ' +
-        item[3] + ' ' +
-        item[7]
-      ).toLowerCase();
+      limpar(item[0])
+      .toLowerCase()
+      .includes(mru);
 
-    let okTexto =
+    let pesquisa = (
+
+      limpar(item[1]) + ' ' +
+      limpar(item[2]) + ' ' +
+      limpar(item[3]) + ' ' +
+      limpar(item[7])
+
+    ).toLowerCase();
+
+    return okMru &&
       pesquisa.includes(texto);
-
-    return okMru && okTexto;
 
   }).slice(0,50);
 
@@ -415,7 +999,7 @@ function pesquisar(){
 </div>
 
 <div class="valor">
-${item[1]}
+${limpar(item[1])}
 </div>
 
 <div class="titulo">
@@ -423,7 +1007,7 @@ ${item[1]}
 </div>
 
 <div class="valor">
-${item[2]}
+${limpar(item[2])}
 </div>
 
 <div class="titulo">
@@ -431,7 +1015,7 @@ ${item[2]}
 </div>
 
 <div class="valor">
-${item[3]}
+${limpar(item[3])}
 </div>
 
 <div class="titulo">
@@ -439,7 +1023,7 @@ ${item[3]}
 </div>
 
 <div class="valor">
-${item[4]}
+${limpar(item[4])}
 </div>
 
 <div class="titulo">
@@ -447,7 +1031,7 @@ ${item[4]}
 </div>
 
 <div class="valor">
-${item[5]}
+${limpar(item[5])}
 </div>
 
 <div class="titulo">
@@ -455,7 +1039,7 @@ ${item[5]}
 </div>
 
 <div class="valor">
-${item[6]}
+${limpar(item[6])}
 </div>
 
 <div class="titulo">
@@ -463,7 +1047,7 @@ ${item[6]}
 </div>
 
 <div class="valor">
-${item[7]}
+${limpar(item[7])}
 </div>
 
 <a
@@ -482,19 +1066,30 @@ target="_blank"
 
   });
 
-  document.getElementById('resultados')
+  document
+    .getElementById('resultados')
     .innerHTML = html;
 
 }
 
+
+// =====================================
+// MAPA
+// =====================================
+
 document
 .getElementById('areaMapa')
-.addEventListener('change', carregarAreaMapa);
+.addEventListener(
+  'change',
+  carregarAreaMapa
+);
 
 async function carregarAreaMapa(){
 
   let area =
-    document.getElementById('areaMapa').value;
+    document.getElementById(
+      'areaMapa'
+    ).value;
 
   banco = [];
 
@@ -515,15 +1110,19 @@ async function carregarAreaMapa(){
   }
 
   let mrus = [
+
     ...new Set(
-      banco.map(i => i[0])
+      banco.map(i => limpar(i[0]))
     )
+
   ];
 
   mrus.sort();
 
   let lista =
-    document.getElementById('listaMRUsMapa');
+    document.getElementById(
+      'listaMRUsMapa'
+    );
 
   lista.innerHTML = '';
 
@@ -536,37 +1135,54 @@ async function carregarAreaMapa(){
 
 }
 
-function carregarMapa(){
+
+window.carregarMapa = function(){
 
   let mru =
-    document.getElementById('mruMapa').value;
+    document.getElementById(
+      'mruMapa'
+    ).value;
 
   let dados =
-    banco.filter(i => i[0] == mru);
+    banco.filter(
+      i => limpar(i[0]) == mru
+    );
 
   if(dados.length == 0){
-    alert('Nenhuma instalação encontrada');
+
+    alert(
+      'Nenhuma instalação encontrada'
+    );
+
     return;
+
   }
 
   if(map){
+
     map.remove();
+
   }
 
-  map = L.map('map')
-    .setView(
-      [
-        parseFloat(dados[0][8]),
-        parseFloat(dados[0][9])
-      ],
-      15
-    );
+  map = L.map('map').setView(
+
+    [
+      parseFloat(dados[0][8]),
+      parseFloat(dados[0][9])
+    ],
+
+    15
+
+  );
 
   L.tileLayer(
+
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+
     {
       attribution:'© OpenStreetMap'
     }
+
   ).addTo(map);
 
   dados.forEach(item => {
@@ -577,22 +1193,24 @@ function carregarMapa(){
     ) return;
 
     let marker = L.marker([
+
       parseFloat(item[8]),
       parseFloat(item[9])
+
     ]).addTo(map);
 
     marker.bindPopup(`
 
 <b>⚡ Instalação:</b><br>
-${item[1]}
+${limpar(item[1])}
 <br><br>
 
 <b>👤 Cliente:</b><br>
-${item[7]}
+${limpar(item[7])}
 <br><br>
 
 <b>📍 Rua:</b><br>
-${item[3]}, ${item[4]}
+${limpar(item[3])}, ${limpar(item[4])}
 <br><br>
 
 <a
@@ -608,14 +1226,19 @@ target="_blank"
 
   });
 
-}
+};
 
-if ('serviceWorker' in navigator) {
+
+// =====================================
+// SERVICE WORKER
+// =====================================
+
+if('serviceWorker' in navigator){
 
   window.addEventListener('load', () => {
 
     navigator.serviceWorker
-      .register('./sw.js?v=9999');
+      .register('./sw.js?v=12000');
 
   });
 
