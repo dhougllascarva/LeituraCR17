@@ -416,15 +416,24 @@ async user => {
   let dados =
     snap.data();
 
-  if(!dados.ativo){
+  console.log('DADOS FIREBASE:', dados);
 
-    alert('Usuário desativado');
+console.log('TIPO ATIVO:', typeof dados.ativo);
 
-    logout();
+console.log('VALOR ATIVO:', dados.ativo);
 
-    return;
+if(!dados.ativo){
 
-  }
+  alert(
+    'Usuário desativado -> ' +
+    JSON.stringify(dados)
+  );
+
+  logout();
+
+  return;
+
+}
 
   permissoes =
     dados.areas;
