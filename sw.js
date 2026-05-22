@@ -1,5 +1,4 @@
-
-const CACHE_NAME = 'tellus-v11000';
+const CACHE_NAME = 'tellus-v12000';
 
 const urlsToCache = [
 
@@ -32,6 +31,8 @@ const urlsToCache = [
 
 self.addEventListener('install', event => {
 
+  self.skipWaiting();
+
   event.waitUntil(
 
     caches.open(CACHE_NAME)
@@ -47,28 +48,80 @@ self.addEventListener('install', event => {
 
 
 // ======================================
+// ACTIVATE
+// LIMPAR CACHES ANTIGOS
+// ======================================
+
+self.addEventListener('activate', event => {
+
+  event.waitUntil(
+
+    caches.keys().then(keys => {
+
+      return Promise.all(
+
+        keys.map(key => {
+
+          if(key !== CACHE_NAME){
+
+            return caches.delete(key);
+
+          }
+
+        })
+
+      );
+
+    })
+
+  );
+
+  self.clients.claim();
+
+});
+
+
+// ======================================
 // FETCH
 // ======================================
 
 self.addEventListener('fetch', event => {
 
-  event.respondWith(
+  const url = event.request.url;
 
-    caches.match(event.request)
-      .then(response => {
 
-        return response || fetch(event.request)
-          .then(networkResponse => {
+  // ==================================
+  // NÃO CACHEAR FIREBASE
+  // ==================================
 
-            // ==================================
-            // CACHE DOS MAPAS
-            // ==================================
+  if(
 
-            if(
-              event.request.url.includes(
-                'tile.openstreetmap.org'
-              )
-            ){
+    url.includes('firebase') ||
+    url.includes('googleapis')
+
+  ){
+
+    event.respondWith(fetch(event.request));
+    return;
+
+  }
+
+
+  // ==================================
+  // MAPAS OPENSTREETMAP
+  // ==================================
+
+  if(
+    url.includes('tile.openstreetmap.org')
+  ){
+
+    event.respondWith(
+
+      caches.match(event.request)
+        .then(response => {
+
+          return response || fetch(event.request)
+            .then(networkResponse => {
 
               caches.open(CACHE_NAME)
                 .then(cache => {
@@ -80,11 +133,29 @@ self.addEventListener('fetch', event => {
 
                 });
 
-            }
+              return networkResponse;
 
-            return networkResponse;
+            });
 
-          });
+        })
+
+    );
+
+    return;
+
+  }
+
+
+  // ==================================
+  // CACHE NORMAL
+  // ==================================
+
+  event.respondWith(
+
+    caches.match(event.request)
+      .then(response => {
+
+        return response || fetch(event.request);
 
       })
 
