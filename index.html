@@ -10,30 +10,11 @@ name="viewport"
 content="width=device-width, initial-scale=1.0"
 >
 
-<title>RotaLeitura</title>
+<title>Tellus Leitura</title>
 
 <link rel="manifest" href="manifest.json">
 
-<meta name="theme-color" content="#031D44">
-
-<meta name="mobile-web-app-capable" content="yes">
-
-<meta name="apple-mobile-web-app-capable" content="yes">
-
-<meta
-name="apple-mobile-web-app-status-bar-style"
-content="black-translucent"
->
-
-<meta
-name="apple-mobile-web-app-title"
-content="RotaLeitura"
->
-
-<link
-rel="apple-touch-icon"
-href="launchericon-192x192.png"
->
+<meta name="theme-color" content="#0b1f3a">
 
 <link
 rel="stylesheet"
@@ -44,141 +25,99 @@ href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
 src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
 </script>
 
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-rel="stylesheet"
->
-
 <style>
 
 *{
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
 }
 
 body{
   margin:0;
-  font-family:'Inter',sans-serif;
-  background:#EEF2F6;
-  color:#031D44;
+  font-family:Arial,sans-serif;
+  background:#eef2f7;
 }
 
 .topo{
-  background:#031D44;
+  background:#0b1f3a;
   color:white;
-  padding:26px 20px;
+  padding:20px;
   text-align:center;
-  box-shadow:0 2px 10px rgba(0,0,0,.12);
 }
 
 .logo{
-  font-size:30px;
-  font-weight:700;
-  letter-spacing:.5px;
+  font-size:28px;
+  font-weight:bold;
 }
 
 .sub{
-  margin-top:6px;
-  font-size:14px;
-  opacity:.85;
-  color:#D7E3F4;
+  margin-top:5px;
 }
 
 .container{
-  padding:16px;
+  padding:15px;
 }
 
 .card{
   background:white;
-  padding:18px;
-  border-radius:20px;
-  margin-bottom:16px;
-  box-shadow:0 4px 14px rgba(0,0,0,0.06);
-  border:1px solid #E2E8F0;
-}
-
-input,
-select{
-  width:100%;
-  padding:15px 16px;
-  margin-bottom:14px;
-  border:1px solid #DCE3EA;
+  padding:16px;
   border-radius:16px;
-  font-size:15px;
-  background:white;
-  outline:none;
-  transition:.2s;
-  color:#031D44;
+  margin-bottom:16px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
-input:focus,
-select:focus{
-  border-color:#1976D2;
-  box-shadow:0 0 0 4px rgba(25,118,210,.12);
+input,select{
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  border:none;
+  border-radius:14px;
+  font-size:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
 
 .botao{
   display:block;
-  background:#1976D2;
+  background:#1976d2;
   color:white;
   text-decoration:none;
   text-align:center;
-  padding:15px;
-  border-radius:16px;
+  padding:14px;
+  border-radius:12px;
   margin-top:12px;
-  font-weight:600;
+  font-weight:bold;
   border:none;
   width:100%;
-  font-size:15px;
-  transition:.2s;
-  cursor:pointer;
 }
 
-.botao:active{
-  transform:scale(.98);
-}
-
-.logout{
-  background:#C62828;
+.oculto{
+  display:none;
 }
 
 .abas{
   display:flex;
-  background:white;
-  padding:8px;
-  gap:8px;
-  box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
 
 .aba{
   flex:1;
   border:none;
-  padding:14px;
-  font-size:15px;
-  font-weight:600;
-  border-radius:14px;
-  background:#E9EEF5;
-  color:#031D44;
-  transition:.2s;
-  cursor:pointer;
+  padding:15px;
+  font-size:16px;
+  font-weight:bold;
 }
 
 .ativa{
-  background:#1976D2;
+  background:#1976d2;
   color:white;
 }
 
 #map{
   width:100%;
   height:75vh;
-  border-radius:22px;
-  margin-top:14px;
-  overflow:hidden;
-  box-shadow:0 4px 14px rgba(0,0,0,.08);
+  border-radius:18px;
 }
 
-.oculto{
-  display:none;
+.logout{
+  background:#c62828;
 }
 
 </style>
@@ -192,11 +131,11 @@ select:focus{
 <div class="topo">
 
 <div class="logo">
-RotaLeitura
+TELLUS LEITURA
 </div>
 
 <div class="sub">
-Inteligência em campo
+Login Operacional
 </div>
 
 </div>
@@ -240,11 +179,11 @@ class="oculto"
 <div class="topo">
 
 <div class="logo">
-RotaLeitura
+TELLUS LEITURA
 </div>
 
 <div class="sub">
-Inteligência em campo
+Pesquisa Operacional
 </div>
 
 </div>
@@ -366,17 +305,22 @@ from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyAVmx3h0aMvivJ3jAVSkyndK8buCnrRbEA",
+  apiKey: "AIzaSyDlacPos-Jm7mi5pCWLMaXIZsnQUBXNsBc",
 
-  authDomain: "rotaleitura.firebaseapp.com",
+  authDomain:
+  "tellusleitura-f115b.firebaseapp.com",
 
-  projectId: "rotaleitura",
+  projectId:
+  "tellusleitura-f115b",
 
-  storageBucket: "rotaleitura.firebasestorage.app",
+  storageBucket:
+  "tellusleitura-f115b.firebasestorage.app",
 
-  messagingSenderId: "1084691059100",
+  messagingSenderId:
+  "1088197735339",
 
-  appId: "1:1084691059100:web:2ce8c10354da0cc191f859"
+  appId:
+  "1:1088197735339:web:6d370186d58f71200fd8ee"
 
 };
 
@@ -407,8 +351,6 @@ async function(){
     );
 
   }catch(e){
-
-    console.error(e);
 
     alert('Login inválido');
 
@@ -502,7 +444,7 @@ async user => {
 async function carregarSistema(){
 
   let response =
-    await fetch('./indexes.json');
+    await fetch('indexes.json');
 
   indexes =
     await response.json();
@@ -531,6 +473,8 @@ ${area} - ${AREAS[area]}
 
   document.getElementById('areaMapa')
     .innerHTML = html;
+
+  // AUTOSELEÇÃO
 
   if(permissoes.length === 1){
 
@@ -602,16 +546,6 @@ function(tipo){
       .getElementById('btnMapa')
       .classList.add('ativa');
 
-    setTimeout(() => {
-
-      if(map){
-
-        map.invalidateSize();
-
-      }
-
-    },300);
-
   }
 
 }
@@ -634,7 +568,7 @@ async function carregarArea(){
   for(let arquivo of arquivos){
 
     let response =
-      await fetch('./' + arquivo);
+      await fetch(arquivo);
 
     let parte =
       await response.json();
@@ -797,7 +731,7 @@ async function carregarAreaMapa(){
   for(let arquivo of arquivos){
 
     let response =
-      await fetch('./' + arquivo);
+      await fetch(arquivo);
 
     let parte =
       await response.json();
@@ -927,7 +861,7 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
 
     navigator.serviceWorker
-      .register('./sw.js?v=13005');
+      .register('./sw.js?v=12004');
 
   });
 
